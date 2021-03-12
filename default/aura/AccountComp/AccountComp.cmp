@@ -1,0 +1,56 @@
+<aura:component controller="AccountAuraClr" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	
+ <aura:handler name="init" value="{!this}" action="{!c.doInit}" /> <!-- calling doInit method in Component Controller -->
+    <aura:attribute name="accLst" type="Account[]"/> <!-- create Array type Account variable-->
+    <article class="slds-card">
+      <div class="slds-card__header slds-grid">
+        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+          <div class="slds-media__figure">
+            <span class="slds-icon_container slds-icon-standard-account" title="description of icon when needed">
+                <lightning:icon iconName="standard:account" size="large" alternativeText="List account"/>
+            </span>
+          </div>
+          <div class="slds-media__body">
+            <h2>
+              <a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="Account">
+                <span class="slds-text-heading_small">Account</span>
+              </a>
+            </h2>
+          </div>
+        </header>
+       </div>
+      <div class="slds-card__body">
+        <table class="slds-table slds-table_bordered slds-no-row-hover slds-table_cell-buffer">
+          <thead>
+            <tr class="slds-text-title_caps">
+              <th scope="col">
+                <div class="slds-truncate" title="Name">Name</div>
+              </th>
+              <th scope="col">
+                <div class="slds-truncate" title="Type">Type</div>
+              </th>
+              <th scope="col">
+                <div class="slds-truncate" title="Phone">Phone</div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+              <aura:iteration items="{!v.accLst}" var="acc"> <!-- iteration account record.-->
+                  <tr class="slds-hint-parent">
+                      <th scope="row">
+                          <div class="slds-truncate" title="Adam Choi"><a href="javascript:void(0);">{!acc.Name}</a></div>
+                      </th>
+                      <td>
+                          <div class="slds-truncate" title="Company One">{!acc.Type}</div>
+                      </td>
+                      <td>
+                          <div class="slds-truncate" title="{!acc.Phone}">{!acc.Phone}</div>
+                      </td>
+                  </tr>                     
+              </aura:iteration>
+          </tbody>
+        </table>
+      </div>
+      <footer class="slds-card__footer"><a href="javascript:void(0);"><!--View All <span class="slds-assistive-text">entity type</span>--></a></footer>
+    </article>
+</aura:component>
